@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./base.css";
+@import "./fonts.css";
+
+:root {
+    --bg-dark: #1e1e1e;
+    --clr-primary-300: #92e7fc;
+    --clr-primary-400: #62d9fb;
+    --clr-primary-500: #2ecefa;
+    --clr-primary-600: #06bcef;
+    --off-white: #f4f4f4;
+    --ff-primary: "Autography", Arial, Helvetica, sans-serif;
+}

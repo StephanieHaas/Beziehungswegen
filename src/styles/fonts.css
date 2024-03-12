@@ -1,0 +1,10 @@
+@font-face {
+    font-family: "Autography";
+    src: url("../assets/fonts/Autography.eot");
+    src:
+        url("../assets/fonts/Autography.eot?#iefix") format("embedded-opentype"),
+        url("../assets/fonts/Autography.woff2") format("woff2"),
+        url("../assets/fonts/Autography.woff") format("woff"),
+        url("../assets/fonts/Autography.ttf") format("truetype"),
+        url("../assets/fonts/Autography.svg#Autography") format("svg");
+}
