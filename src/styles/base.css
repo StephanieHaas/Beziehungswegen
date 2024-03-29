@@ -87,3 +87,7 @@ select {
         scroll-behavior: auto !important;
     }
 }
+
+h1 {
+    font-family: var(--ff-primary);
+}

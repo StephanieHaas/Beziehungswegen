@@ -1,33 +1,32 @@
 import { Link, PageProps, graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
+import { Menu } from "../components/menu";
+import Layout from "../components/layout";
+import { Footer } from "../components/footer";
 
-const TemplatePage: React.FC<PageProps<Queries.PageQuery>> = ({ data }) => {
-    console.log(data);
-    const page = data.page;
+const PageTemplate: React.FC<PageProps<Queries.PageQuery>> = ({ data }) => {
+    const { childMarkdownRemark, name } = data.page!;
+
     return (
         <>
-            {/* <Link to="/">
-                <button>{"Home"}</button>
-            </Link> */}
-            <h1 className="font-autography">{page?.name}</h1>
-            {/*
-        To add a cover:
-        Add an image in your Google Doc first page header
-        https://support.google.com/docs/answer/86629
-      */}
-            {/* {cover && <GatsbyImage image={getImage(cover.image)} />} */}
-            <div dangerouslySetInnerHTML={{ __html: page?.childMarkdownRemark?.html as string }} />
+            <Layout>
+                <section className="container mx-auto min-h-screen">
+                    <h1>{name}</h1>
+                    {/* {cover && <GatsbyImage image={getImage(cover.image)} />} */}
+                    <div dangerouslySetInnerHTML={{ __html: childMarkdownRemark?.html as string }} />
+                </section>
+            </Layout>
         </>
     );
 };
 
-export default TemplatePage;
+export default PageTemplate;
 export { Head } from "../components/head";
 
 export const pageQuery = graphql`
     query Page($path: String!) {
         page: googleDocs(slug: { eq: $path }) {
+            id
             name
             cover {
                 image {

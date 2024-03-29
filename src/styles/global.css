@@ -14,3 +14,30 @@
     --off-white: #f4f4f4;
     --ff-primary: "Autography", Arial, Helvetica, sans-serif;
 }
+
+@layer base {
+    a {
+        @apply text-primary-700;
+    }
+
+    h1 {
+        @apply font-autography;
+        @apply text-5xl;
+        @apply sm:text-7xl;
+        @apply lg:text-8xl;
+        @apply text-primary-700;
+        @apply my-8;
+        @apply lg:leading-normal;
+    }
+    h2 {
+        @apply lg:text-5xl;
+        @apply mb-2;
+        @apply mt-16;
+        @apply sm:text-3xl;
+        @apply text-3xl;
+        @apply text-primary-700;
+    }
+    p {
+        @apply my-3;
+    }
+}
