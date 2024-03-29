@@ -4,7 +4,7 @@ module.exports = {
     ignorePatterns: [".eslintrc.js"],
     overrides: [
         {
-            files: ["*.ts", "*.tsx"],
+            files: ["*.ts", "*.tsx", "./utils/sftp.js"],
             processor: "@graphql-eslint/graphql",
             parser: "@typescript-eslint/parser",
             extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],

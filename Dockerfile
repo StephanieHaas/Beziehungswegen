@@ -1,4 +1,4 @@
 FROM nginx:latest
 EXPOSE 80
 
-COPY ./artifact /usr/share/nginx/html
+COPY ./public /usr/share/nginx/html
