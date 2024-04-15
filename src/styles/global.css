@@ -30,14 +30,34 @@
         @apply lg:leading-normal;
     }
     h2 {
-        @apply lg:text-5xl;
-        @apply mb-2;
-        @apply mt-16;
-        @apply sm:text-3xl;
+        @apply font-autography;
         @apply text-3xl;
+        @apply sm:text-6xl;
+        @apply lg:text-6xl;
+        @apply mb-2;
+        @apply mt-24;
         @apply text-primary-700;
     }
     p {
-        @apply my-3;
+        @apply my-2;
+    }
+
+    th {
+        @apply font-normal;
+        @apply text-left;
+    }
+
+    th,
+    td {
+        vertical-align: top;
+        @apply px-2;
+        @apply py-1;
+
+        &:first-child {
+            @apply pl-0;
+        }
+        &:last-child {
+            @apply pr-0;
+        }
     }
 }
