@@ -105,7 +105,7 @@ const MenuToggler: React.FC<{
         <button
             onClick={onClick}
             type="button"
-            className={`inline-flex items-center py-2 px-3 justify-center text-sm rounded-lg md:hidden focus:outline-none dark:text-primary-400 backdrop-blur-lg ${className}`}
+            className={`inline-flex items-center py-2 px-3 justify-center text-sm rounded-lg md:hidden focus:outline-none text-primary-700 backdrop-blur-lg ${className}`}
             aria-controls="navbar-dropdown"
             aria-expanded="false"
         >
