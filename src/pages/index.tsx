@@ -4,6 +4,8 @@ import { LeadingLogo } from "../components/sections/leading-logo";
 import { ProfileImage } from "../components/profile/image";
 import { ProfileTitle } from "../components/profile/title";
 import { ProfileContact } from "../components/profile/contact";
+import { Seo } from "../components/seo";
+import { Body } from "../components/body";
 
 const IndexPage = () => {
     return (
@@ -17,4 +19,12 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
-export { Head } from "../components/head";
+
+export const Head = () => {
+    return (
+        <>
+            <Seo />
+            <Body />
+        </>
+    );
+};

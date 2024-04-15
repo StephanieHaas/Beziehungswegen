@@ -1,23 +1,22 @@
-import { Link, PageProps, graphql } from "gatsby";
+import { HeadProps, Link, PageProps, graphql } from "gatsby";
 import React from "react";
 import Layout from "../components/layout";
+import { Seo } from "../components/seo";
+import { Body } from "../components/body";
 
 const PageTemplate: React.FC<PageProps<Queries.BlogPostQuery>> = ({ data }) => {
-    const { childMarkdownRemark, name, createdTime } = data.page!;
+    const { childMarkdownRemark, name } = data.page!;
 
     return (
         <>
             <Layout>
-                <section className="container mx-auto">
+                <section className="container mx-auto min-h-screen px-4">
                     <h1>
-                        <Link to="/blog" className="text-primary-700 hover:text-primary-900">
-                            Blog
+                        <Link to="/themen-und-gedanken" className="text-primary-700 hover:text-primary-900 pr-8">
+                            «
                         </Link>
-                        {" / "}
                         {name}
                     </h1>
-                    <span className="text-primary-700/60">Erstellt am {createdTime}</span>
-                    {/* {cover && <GatsbyImage image={getImage(cover.image)} />} */}
                     <div dangerouslySetInnerHTML={{ __html: childMarkdownRemark?.html as string }} />
                 </section>
             </Layout>
@@ -26,14 +25,23 @@ const PageTemplate: React.FC<PageProps<Queries.BlogPostQuery>> = ({ data }) => {
 };
 
 export default PageTemplate;
-export { Head } from "../components/head";
+
+export const Head = (props: HeadProps<Queries.BlogPostQuery>) => {
+    const pathname = props.location.pathname;
+    const title = props.data!.page!.name!;
+    return (
+        <>
+            <Seo title={title} pathname={pathname} />
+            <Body />
+        </>
+    );
+};
 
 export const pageQuery = graphql`
     query BlogPost($path: String!) {
         page: googleDocs(slug: { eq: $path }) {
             id
             name
-            createdTime(formatString: "DD.MM.yyyy")
             childMarkdownRemark {
                 html
                 timeToRead
