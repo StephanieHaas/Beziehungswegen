@@ -1,8 +1,12 @@
-import { Link, PageProps, graphql } from "gatsby";
+import { HeadProps, Link, PageProps, graphql } from "gatsby";
 import React from "react";
 import Layout from "../components/layout";
+import { Seo } from "../components/seo";
+import { Body } from "../components/body";
 
+const title = "Themen und Gedanken";
 const maxPreviewLength = 150;
+
 const PageTemplate: React.FC<PageProps<Queries.BlogsQuery>> = ({
     data: {
         blog: { posts },
@@ -11,8 +15,8 @@ const PageTemplate: React.FC<PageProps<Queries.BlogsQuery>> = ({
     return (
         <>
             <Layout>
-                <section className="container mx-auto">
-                    <h1>Blog</h1>
+                <section className="container mx-auto min-h-screen px-4">
+                    <h1>{title}</h1>
                     <section>
                         {posts.map((post: Queries.BlogsQuery["blog"]["posts"][0]) => {
                             const html = post.childrenMarkdownRemark?.[0]?.html || "";
@@ -22,10 +26,9 @@ const PageTemplate: React.FC<PageProps<Queries.BlogsQuery>> = ({
                                 : html;
                             return (
                                 <div key={post.id} className="py-4">
-                                    <h2>
+                                    <h2 className="text-6xl">
                                         <Link to={post.path}>{post.name}</Link>{" "}
                                     </h2>
-                                    <span className="text-primary-700/60">Erstellt am {post.createdTime}</span>
                                     <div
                                         dangerouslySetInnerHTML={{
                                             __html: preview,
@@ -43,7 +46,16 @@ const PageTemplate: React.FC<PageProps<Queries.BlogsQuery>> = ({
 };
 
 export default PageTemplate;
-export { Head } from "../components/head";
+
+export const Head = (props: HeadProps<Queries.BlogsQuery>) => {
+    const pathname = props.location.pathname;
+    return (
+        <>
+            <Seo title={title} pathname={pathname} />
+            <Body />
+        </>
+    );
+};
 
 export const pageQuery = graphql`
     query Blogs {
@@ -52,7 +64,6 @@ export const pageQuery = graphql`
                 id
                 name
                 path
-                createdTime(formatString: "DD.MM.yyyy")
                 childrenMarkdownRemark {
                     html
                 }
