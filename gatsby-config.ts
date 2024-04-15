@@ -10,7 +10,7 @@ const config: GatsbyConfig = {
         description: "Systemische Einzel-, Paar- und Familienberatung Pädagogische Beratung und Begleitung",
         image: "/images/icon.png",
     },
-    pathPrefix: "/preview",
+    pathPrefix: process.env.PATH_PREFIX,
     // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
     // If you use VSCode you can also use the GraphQL plugin
     // Learn more at: https://gatsby.dev/graphql-typegen
@@ -20,9 +20,29 @@ const config: GatsbyConfig = {
         "gatsby-plugin-postcss",
         // "gatsby-plugin-google-gtag",
         "gatsby-plugin-image",
-        "gatsby-plugin-sharp",
+        {
+            resolve: "gatsby-plugin-sharp",
+            options: {
+                // Defaults used for gatsbyImageData and StaticImage
+                defaults: {
+                    quality: 100,
+                    formats: ["auto", "webp"],
+                    placeholder: "blurred",
+                    blurredOptions: {
+                        width: 80,
+                    },
+                    webpOptions: {
+                        quality: 100,
+                        alphaQuality: 100,
+                        lossless: true,
+                        smartSubsample: true,
+                    },
+                },
+                // Set to false to allow builds to continue on image errors
+                failOnError: true,
+            },
+        },
         "gatsby-transformer-sharp",
-        // "gatsby-plugin-sitemap",
         {
             resolve: "gatsby-source-google-docs",
             options: {
@@ -33,22 +53,61 @@ const config: GatsbyConfig = {
         {
             resolve: "gatsby-plugin-mdx",
             options: {
-                gatsbyRemarkPlugins: [
-                    // You need some transformations?
-                    // Checkout https://www.gatsbyjs.com/plugins/?=gatsby-remark
-                    // And pick-up some plugins
-                ],
+                gatsbyRemarkPlugins: [],
             },
         },
         {
             resolve: "gatsby-transformer-remark",
             options: {
-                plugins: ["gatsby-remark-images", "gatsby-remark-gifs"],
+                plugins: [
+                    {
+                        resolve: `gatsby-remark-images`,
+                        options: {
+                            // It's important to specify the maxWidth (in pixels) of
+                            // the content container as this plugin uses this as the
+                            // base for generating different widths of each image.
+                            maxWidth: 590,
+                            quality: 70,
+                            linkImagesToOriginal: false,
+                        },
+                    },
+                    "gatsby-remark-gifs",
+                ],
+            },
+        },
+        {
+            resolve: "gatsby-plugin-sitemap",
+            options: {
+                excludes: ["/404"],
+                output: "/",
+            },
+        },
+        {
+            resolve: "gatsby-plugin-robots-txt",
+            options: {
+                host: "https://beziehungswegen.de",
+                sitemap: "https://beziehungswegen.de/sitemap.xml",
+                resolveEnv: () => process.env.GATSBY_ENV,
+                env: {
+                    development: {
+                        policy: [{ userAgent: "*", disallow: ["/"] }],
+                    },
+                    production: {
+                        policy: [{ userAgent: "*", allow: "/" }],
+                    },
+                },
             },
         },
         {
             resolve: "gatsby-plugin-manifest",
             options: {
+                name: "beziehungswegen",
+                short_name: "beziehungswegen",
+                start_url: process.env.PATH_PREFIX,
+                lang: "de",
+                background_color: "#f9eaf7",
+                theme_color: "#f9eaf7",
+                display: "standalone",
                 icon: "src/images/icon.png",
             },
         },
