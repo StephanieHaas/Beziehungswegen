@@ -7,21 +7,23 @@ const menuItems = [
     {
         label: "Beratungsangebote",
         items: [
-            { href: "/beratungsangebote/einzelberatung", label: "Einzelberatung" },
-            { href: "/beratungsangebote/paar-und-familienberatung", label: "Paar, Familienberatung" },
-            { href: "/beratungsangebote/coaching", label: "Coaching" },
-            { href: "/beratungsangebote/padagogische-begleitung", label: "Pädagogische Begleitung" },
+            { href: "/beratungsangebote/einzelberatung-und-coaching", label: "Einzelberatung und Coaching" },
             {
-                href: "/beratungsangebote/beratung-kindliches-schlafverhalten",
-                label: "Beratung kindliches Schlafverhalten",
+                href: "/beratungsangebote/paar-beziehungs-und-familienberatung",
+                label: "Paar-, Beziehungs- und Familienberatung",
             },
-            { href: "/beratungsangebote/hochsensibilitat", label: "Hochsensibilität" },
-            { href: "/beratungsangebote/gefuhlsstarke", label: "Gefühlsstärke" },
+            { href: "/beratungsangebote/padagogische-begleitung", label: "Pädagogische Begleitung" },
+            // {
+            //     href: "/beratungsangebote/beratung-kindliches-schlafverhalten",
+            //     label: "Beratung kindliches Schlafverhalten",
+            // },
+            // { href: "/beratungsangebote/hochsensibilitat", label: "Hochsensibilität" },
+            // { href: "/beratungsangebote/gefuhlsstarke", label: "Gefühlsstärke" },
         ],
     },
-    { href: "/kurse", label: "Kurse" },
+    { href: "/kurse/kurse", label: "Kurse" },
     { href: "/preise", label: "Preise" },
-    { href: "/blog", label: "Blog" },
+    { href: "/themen-und-gedanken", label: "Themen und Gedanken" },
     { href: "/kontakt", label: "Kontakt" },
 ];
 
@@ -92,13 +94,18 @@ const Dropdown: React.FC<{ label: string; children: React.ReactNode }> = ({ labe
     );
 };
 
-const MenuToggler: React.FC<{ label: string; open: boolean; onClick: () => void }> = ({ label, open, onClick }) => {
+const MenuToggler: React.FC<{
+    label: string;
+    open: boolean;
+    onClick: () => void;
+    ref: React.MutableRefObject<HTMLButtonElement | null>;
+}> = ({ label, open, onClick }) => {
     const className = open ? "ring-primary-200 dark:ring-primary-600 ring-1" : "";
     return (
         <button
             onClick={onClick}
             type="button"
-            className={`inline-flex items-center py-2 px-3 justify-center text-sm rounded-lg md:hidden focus:outline-none dark:text-primary-400 ${className}`}
+            className={`inline-flex items-center py-2 px-3 justify-center text-sm rounded-lg md:hidden focus:outline-none dark:text-primary-400 backdrop-blur-lg ${className}`}
             aria-controls="navbar-dropdown"
             aria-expanded="false"
         >
@@ -109,6 +116,21 @@ const MenuToggler: React.FC<{ label: string; open: boolean; onClick: () => void 
 
 export const Menu: React.FC = () => {
     const [open, setOpen] = useState(false);
+    const ref = React.useRef<null | HTMLButtonElement>(null);
+
+    React.useEffect(() => {
+        const handleClick = (event: MouseEvent) => {
+            if (ref.current && !ref.current.contains(event.target as Node)) {
+                setOpen(false);
+            }
+        };
+
+        document.addEventListener("click", handleClick, true);
+
+        return () => {
+            document.removeEventListener("click", handleClick, true);
+        };
+    }, [ref, setOpen]);
 
     const handleClick = () => {
         setOpen((old) => !old);
@@ -118,7 +140,7 @@ export const Menu: React.FC = () => {
         <>
             <nav className={`sticky top-0 md:relative z-50 ${open ? "bg-primary-100" : ""}`}>
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-end mx-auto p-2">
-                    <MenuToggler label="Menü" onClick={handleClick} open={open} />
+                    <MenuToggler label="Menü" onClick={handleClick} open={open} ref={ref} />
                     <div className={`${open ? "" : "hidden"} w-full md:block md:w-auto`}>
                         <ul className="flex flex-col font-medium md:p-0 mt-4 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
                             {menuItems.map((item) => {
