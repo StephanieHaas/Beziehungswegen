@@ -11,10 +11,11 @@ on:
         default: "production"
         options:
           - production
-          - staging
+          - preview
 
 jobs:
   build:
+    name: Build website
     runs-on: ubuntu-latest
     env:
       GATSBY_TELEMETRY_DISABLED: 1
