@@ -5,6 +5,7 @@ module.exports = {
     overrides: [
         {
             files: ["*.ts", "*.tsx", "./utils/sftp.js"],
+            ignorePatterns: ["postcss.config.js"],
             processor: "@graphql-eslint/graphql",
             parser: "@typescript-eslint/parser",
             extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],

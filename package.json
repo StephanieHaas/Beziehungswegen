@@ -63,6 +63,7 @@
         "gatsby-plugin-manifest": "^5.13.1",
         "gatsby-plugin-robots-txt": "^1.8.0",
         "gatsby-plugin-sitemap": "^6.13.1",
+        "postcss-reporter": "^7.1.0",
         "ssh2-sftp-client": "^10.0.3",
         "typescript": "^5.3.3"
     }
