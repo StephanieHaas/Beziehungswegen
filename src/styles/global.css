@@ -26,7 +26,7 @@
         @apply sm:text-7xl;
         @apply lg:text-8xl;
         @apply text-primary-700;
-        @apply my-8;
+        @apply py-8;
         @apply lg:leading-normal;
     }
     h2 {
@@ -34,9 +34,10 @@
         @apply text-3xl;
         @apply sm:text-6xl;
         @apply lg:text-6xl;
-        @apply mb-2;
-        @apply mt-24;
+        @apply pb-4;
+        @apply pt-16;
         @apply text-primary-700;
+        @apply clear-left;
     }
     p {
         @apply my-2;
@@ -58,6 +59,17 @@
         }
         &:last-child {
             @apply pr-0;
+        }
+    }
+
+    .template-page li > a {
+        &:before {
+            content: ">";
+            @apply font-autography;
+            @apply text-primary-700;
+            @apply text-3xl;
+            @apply inline-block;
+            @apply pr-2;
         }
     }
 }

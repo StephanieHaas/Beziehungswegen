@@ -12,7 +12,11 @@ const PageTemplate: React.FC<PageProps<Queries.BlogPostQuery>> = ({ data }) => {
             <Layout>
                 <section className="container mx-auto min-h-screen px-4">
                     <h1>
-                        <Link to="/themen-und-gedanken" className="text-primary-700 hover:text-primary-900 pr-8">
+                        <Link
+                            to="/themen-und-gedanken"
+                            title="Zurück"
+                            className="text-primary-700 hover:text-primary-900 pr-8"
+                        >
                             «
                         </Link>
                         {name}
