@@ -28,7 +28,7 @@ const PageTemplate: React.FC<PageProps<Queries.PageQuery>> = ({ data }) => {
                     {cover && cover.image && cover.image.childImageSharp && (
                         <GatsbyImage
                             image={getImage(cover.image.childImageSharp.gatsbyImageData) as IGatsbyImageData}
-                            className={`${coverClassName} max-w-[${isIndex ? "4" : "5"}00px] mt-16`}
+                            className={`${coverClassName} max-w-[500px] mt-16`}
                             alt={cover.alt || ""}
                         />
                     )}
