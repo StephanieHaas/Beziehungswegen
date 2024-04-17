@@ -2,7 +2,7 @@ import React from "react";
 
 export const ProfileContact = () => (
     <>
-        <div className="relative flex flex-col justify-center text-center items-center overflow-hidden py-48">
+        <div className="relative flex flex-col justify-center text-center items-center overflow-hidden py-32">
             <h2 className="text-3xl sm:text-3xl lg:text-5xl text-primary-700 mb-8">Kontakt</h2>
             <span className="text-xl sm:text-2xl lg:text-3xl font-light">
                 <a

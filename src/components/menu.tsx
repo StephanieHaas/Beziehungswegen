@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 
 const menuItems = [
     { href: "/", label: "Home" },
@@ -24,16 +24,25 @@ const menuItems = [
     { href: "/kurse/kurse", label: "Kurse" },
     { href: "/preise", label: "Preise" },
     { href: "/themen-und-gedanken", label: "Themen und Gedanken" },
-    { href: "/kontakt", label: "Kontakt" },
+    { href: "/kontakt", label: "Kontakt", highlight: true },
 ];
 
-const MenuItem: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => (
-    <li>
-        <Link to={href} className="block py-2 px-3 md:px-0 text-primary-700">
-            {children}
-        </Link>
-    </li>
-);
+const MenuItem: React.FC<{ href: string; highlight?: boolean; children: React.ReactNode }> = ({
+    href,
+    highlight,
+    children,
+}) => {
+    const className = highlight
+        ? "text-primary-700 md:text-primary-50 md:bg-primary-700 md:hover:bg-primary-500 md:rounded-2xl md:px-4"
+        : "text-primary-700 hover:text-primary-500";
+    return (
+        <li>
+            <Link to={href} className={`block py-2 px-3 md:px-0 ${className}`}>
+                {children}
+            </Link>
+        </li>
+    );
+};
 
 const Dropdown: React.FC<{ label: string; children: React.ReactNode }> = ({ label: label, children }) => {
     const [open, setOpen] = useState(false);
@@ -63,7 +72,7 @@ const Dropdown: React.FC<{ label: string; children: React.ReactNode }> = ({ labe
                 id="dropdownNavbarLink"
                 onClick={handleClick}
                 ref={ref}
-                className="flex items-center justify-between w-full py-2 px-3 md:px-0 md:w-auto text-primary-700"
+                className="flex items-center justify-between w-full py-2 px-3 md:px-0 md:w-auto text-primary-700 hover:text-primary:500"
             >
                 {label}
                 <svg
@@ -75,9 +84,9 @@ const Dropdown: React.FC<{ label: string; children: React.ReactNode }> = ({ labe
                 >
                     <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="m1 1 4 4 4-4"
                     />
                 </svg>
@@ -94,12 +103,15 @@ const Dropdown: React.FC<{ label: string; children: React.ReactNode }> = ({ labe
     );
 };
 
-const MenuToggler: React.FC<{
-    label: string;
-    open: boolean;
-    onClick: () => void;
-    ref: React.MutableRefObject<HTMLButtonElement | null>;
-}> = ({ label, open, onClick }) => {
+const MenuToggler = forwardRef<
+    HTMLButtonElement,
+    {
+        label: string;
+        open: boolean;
+        onClick: () => void;
+        ref: React.MutableRefObject<HTMLButtonElement | null>;
+    }
+>(({ label, open, onClick }, ref) => {
     const className = open ? "ring-primary-200 dark:ring-primary-600 ring-1" : "";
     return (
         <button
@@ -112,7 +124,7 @@ const MenuToggler: React.FC<{
             <span>{label}</span>
         </button>
     );
-};
+});
 
 export const Menu: React.FC = () => {
     const [open, setOpen] = useState(false);
@@ -138,8 +150,8 @@ export const Menu: React.FC = () => {
 
     return (
         <>
-            <nav className={`sticky top-0 md:relative z-50 ${open ? "bg-primary-100" : ""}`}>
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-end mx-auto p-2">
+            <nav className={`sticky top-0 md:relative z-50 container mx-auto ${open ? "bg-primary-100" : ""}`}>
+                <div className=" flex flex-wrap items-center justify-end mx-auto py-2">
                     <MenuToggler label="Menü" onClick={handleClick} open={open} ref={ref} />
                     <div className={`${open ? "" : "hidden"} w-full md:block md:w-auto`}>
                         <ul className="flex flex-col font-medium md:p-0 mt-4 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
@@ -156,7 +168,7 @@ export const Menu: React.FC = () => {
                                     );
                                 }
                                 return (
-                                    <MenuItem key={item.label} href={item.href}>
+                                    <MenuItem key={item.label} href={item.href} highlight={item.highlight}>
                                         {item.label}
                                     </MenuItem>
                                 );
