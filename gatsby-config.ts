@@ -8,7 +8,7 @@ const config: GatsbyConfig = {
         title: `beziehungswegen`,
         siteUrl: `https://beziehungswegen.de/`,
         description: "Systemische Einzel-, Paar- und Familienberatung Pädagogische Beratung und Begleitung",
-        image: "/images/icon.png",
+        image: "/icon.png",
     },
     pathPrefix: process.env.PATH_PREFIX,
     // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
@@ -108,7 +108,7 @@ const config: GatsbyConfig = {
                 background_color: "#f9eaf7",
                 theme_color: "#f9eaf7",
                 display: "standalone",
-                icon: "src/images/icon.png",
+                icon: "static/icon.png",
             },
         },
         {
