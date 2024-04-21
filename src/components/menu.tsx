@@ -72,7 +72,7 @@ const Dropdown: React.FC<{ label: string; children: React.ReactNode }> = ({ labe
                 id="dropdownNavbarLink"
                 onClick={handleClick}
                 ref={ref}
-                className="flex items-center justify-between w-full py-2 px-3 md:px-0 md:w-auto text-primary-700 hover:text-primary:500"
+                className="flex items-center justify-between w-full py-2 px-3 md:px-0 md:w-auto text-primary-700 hover:text-primary-500"
             >
                 {label}
                 <svg

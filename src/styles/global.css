@@ -20,6 +20,10 @@
         @apply text-primary-700;
     }
 
+    section a:hover {
+        @apply text-primary-500;
+    }
+
     h1 {
         @apply font-autography;
         @apply text-5xl;
