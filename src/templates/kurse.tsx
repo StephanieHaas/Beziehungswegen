@@ -1,7 +1,8 @@
 import { HeadProps, Link, PageProps, graphql } from "gatsby";
 import React from "react";
 import Layout from "../components/layout";
-import { Head } from "./page";
+import { Seo } from "../components/seo";
+import { Body } from "../components/body";
 import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 
 const PageTemplate: React.FC<PageProps<Queries.PageQuery>> = ({ data }) => {
@@ -12,14 +13,10 @@ const PageTemplate: React.FC<PageProps<Queries.PageQuery>> = ({ data }) => {
     return (
         <>
             <Layout>
-                <section className="min-h-screen template-page">
+                <section className="template-page container mx-auto min-h-screen px-4">
                     <h1>
                         {!isIndex && (
-                            <Link
-                                to="/kurse/kurse"
-                                title="Zurück zur Kursübersicht"
-                                className="text-primary-700 hover:text-primary-900 pr-8"
-                            >
+                            <Link to="/kurse/kurse" title="Zurück zur Kursübersicht" className="pr-8">
                                 «
                             </Link>
                         )}
@@ -41,7 +38,16 @@ const PageTemplate: React.FC<PageProps<Queries.PageQuery>> = ({ data }) => {
 
 export default PageTemplate;
 
-export { Head };
+export const Head = (props: HeadProps<Queries.PageQuery>) => {
+    const pathname = props.location.pathname;
+    const title = props.data!.page!.name!;
+    return (
+        <>
+            <Seo title={title} pathname={pathname} />
+            <Body />
+        </>
+    );
+};
 
 export const pageQuery = graphql`
     query Page($path: String!) {

@@ -3,25 +3,30 @@ import React from "react";
 import Layout from "../components/layout";
 import { Seo } from "../components/seo";
 import { Body } from "../components/body";
+import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 
 const PageTemplate: React.FC<PageProps<Queries.BlogPostQuery>> = ({ data }) => {
-    const { childMarkdownRemark, name } = data.page!;
+    const { childMarkdownRemark, name, cover } = data.page!;
+    const coverClassName = cover?.title === "links" ? "md:float-left md:mr-8" : "md:float-right md:ml-8";
 
     return (
         <>
             <Layout>
                 <section className="container mx-auto min-h-screen px-4">
                     <h1>
-                        <Link
-                            to="/themen-und-gedanken"
-                            title="Zurück"
-                            className="text-primary-700 hover:text-primary-900 pr-8"
-                        >
+                        <Link to="/themen-und-gedanken" title="Zurück" className="pr-8">
                             «
                         </Link>
                         {name}
                     </h1>
-                    <div dangerouslySetInnerHTML={{ __html: childMarkdownRemark?.html as string }} />
+                    {cover && cover.image && cover.image.childImageSharp && (
+                        <GatsbyImage
+                            image={getImage(cover.image.childImageSharp.gatsbyImageData) as IGatsbyImageData}
+                            className={`${coverClassName} max-w-[500px] mt-16`}
+                            alt={cover.alt || ""}
+                        />
+                    )}
+                    <div dangerouslySetInnerHTML={{ __html: childMarkdownRemark?.html! }} />
                 </section>
             </Layout>
         </>
@@ -51,6 +56,8 @@ export const pageQuery = graphql`
                 timeToRead
             }
             cover {
+                alt
+                title
                 image {
                     childImageSharp {
                         gatsbyImageData

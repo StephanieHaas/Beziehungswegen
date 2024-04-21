@@ -7,7 +7,7 @@ import Layout from "../components/layout";
 
 const PageTemplate: React.FC<PageProps<Queries.PageQuery>> = ({ data }) => {
     const { childMarkdownRemark, name, cover } = data.page!;
-    const coverClassName = cover?.title === "links" ? "md:float-left mr-8" : "md:float-right ml-8";
+    const coverClassName = cover?.title === "links" ? "md:float-left md:mr-8" : "md:float-right md:ml-8";
 
     return (
         <>
