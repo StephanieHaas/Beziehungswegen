@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GATSBY_TELEMETRY_DISABLED: 1
-      DEPLOY_TARGET: ${{ (github.event.client_payload.deploy_target || inputs.deploy_target) }}
+      DEPLOY_TARGET: ${{ github.event.client_payload.deploy_target || inputs.deploy_target }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
