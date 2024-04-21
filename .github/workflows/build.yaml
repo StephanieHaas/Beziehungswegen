@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GATSBY_TELEMETRY_DISABLED: 1
-      PATH_PREFIX: ${{ (github.event.client_payload.deploy_target || inputs.deploy_target) == 'production' && '' || 'preview' }}
+      DEPLOY_TARGET: ${{ (github.event.client_payload.deploy_target || inputs.deploy_target) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -62,7 +62,7 @@ jobs:
           GOOGLE_DOCS_TOKEN: ${{ secrets.GOOGLE_DOCS_TOKEN }}
           GOOGLE_OAUTH_CLIENT_ID: ${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}
           GOOGLE_OAUTH_CLIENT_SECRET: ${{ secrets.GOOGLE_OAUTH_CLIENT_SECRET }}
-          PATH_PREFIX: ${{ env.PATH_PREFIX }}
+          PATH_PREFIX: ${{ env.DEPLOY_TARGET == 'production' && '' || 'preview' }}
 
       - uses: actions/upload-artifact@v4
         with:
@@ -74,4 +74,4 @@ jobs:
           SFTP_HOST: ${{ secrets.SFTP_HOST }}
           SFTP_USER: ${{ secrets.SFTP_USER }}
           SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
-          SFTP_TARGET: ${{ env.PATH_PREFIX }}
+          SFTP_TARGET: ${{ env.DEPLOY_TARGET == 'production' && '' || 'preview' }}
