@@ -57,12 +57,12 @@ jobs:
         run: pnpm run build
         env:
           NODE_ENV: production
-          PREFIX_PATHS: true
+          PREFIX_PATHS: ${{ env.DEPLOY_TARGET == 'production' }}
           GOOGLE_FOLDER_ID: ${{ secrets.GOOGLE_FOLDER_ID }}
           GOOGLE_DOCS_TOKEN: ${{ secrets.GOOGLE_DOCS_TOKEN }}
           GOOGLE_OAUTH_CLIENT_ID: ${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}
           GOOGLE_OAUTH_CLIENT_SECRET: ${{ secrets.GOOGLE_OAUTH_CLIENT_SECRET }}
-          PATH_PREFIX: ${{ env.DEPLOY_TARGET == 'production' && '' || 'preview' }}
+          PATH_PREFIX: "preview"
 
       - uses: actions/upload-artifact@v4
         with:
@@ -74,4 +74,4 @@ jobs:
           SFTP_HOST: ${{ secrets.SFTP_HOST }}
           SFTP_USER: ${{ secrets.SFTP_USER }}
           SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
-          SFTP_TARGET: ${{ env.DEPLOY_TARGET == 'production' && '' || 'preview' }}
+          SFTP_TARGET: ${{ env.DEPLOY_TARGET == 'production' && '.' || 'preview' }}
