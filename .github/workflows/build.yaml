@@ -1,5 +1,5 @@
 name: Build website
-run-name: Deploy to ${{ github.event.client_payload || inputs.deploy_target }}
+run-name: Deploy to ${{ github.event.client_payload.deploy_target || inputs.deploy_target }}
 
 on:
   repository_dispatch:
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GATSBY_TELEMETRY_DISABLED: 1
-      PATH_PREFIX: ${{ (github.event.client_payload || inputs.deploy_target) == 'production' && '' || 'preview' }}
+      PATH_PREFIX: ${{ (github.event.client_payload.deploy_target || inputs.deploy_target) == 'production' && '' || 'preview' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
