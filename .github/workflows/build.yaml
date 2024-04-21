@@ -57,7 +57,7 @@ jobs:
         run: pnpm run build
         env:
           NODE_ENV: production
-          PREFIX_PATHS: ${{ env.DEPLOY_TARGET == 'production' }}
+          PREFIX_PATHS: ${{ env.DEPLOY_TARGET == 'preview' }}
           GOOGLE_FOLDER_ID: ${{ secrets.GOOGLE_FOLDER_ID }}
           GOOGLE_DOCS_TOKEN: ${{ secrets.GOOGLE_DOCS_TOKEN }}
           GOOGLE_OAUTH_CLIENT_ID: ${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}
