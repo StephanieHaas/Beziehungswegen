@@ -9,7 +9,7 @@ export const ProfileImage = () => (
                 alt="Stephanie Haas"
                 layout="fullWidth"
                 placeholder="blurred"
-                className="rounded-full border-[13px] border-solid border-primary-700 mb-14 w-3/5 h-3/5 mx-auto sm:w-96 sm:h-96 max-w-full sm:max-w-[380px] max-h-[380px]"
+                className="rounded-full border-[13px] border-solid border-primary-700 mb-14 w-4/5 h-4/5 mx-auto sm:w-96 sm:h-96 max-w-full sm:max-w-[380px] max-h-[380px]"
             ></StaticImage>
         </div>
     </>

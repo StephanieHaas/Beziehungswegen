@@ -16,7 +16,7 @@ const PageTemplate: React.FC<PageProps<Queries.PageQuery>> = ({ data }) => {
                 <section className="template-page container mx-auto min-h-screen px-4">
                     <h1>
                         {!isIndex && (
-                            <Link to="/kurse/kurse" title="Zurück zur Kursübersicht" className="pr-8">
+                            <Link to="/kurse/kurse" title="Zurück zur Kursübersicht" className="lg:pr-8">
                                 «
                             </Link>
                         )}
@@ -25,7 +25,7 @@ const PageTemplate: React.FC<PageProps<Queries.PageQuery>> = ({ data }) => {
                     {cover && cover.image && cover.image.childImageSharp && (
                         <GatsbyImage
                             image={getImage(cover.image.childImageSharp.gatsbyImageData) as IGatsbyImageData}
-                            className={`${coverClassName} max-w-[500px] mt-16`}
+                            className={`${coverClassName} max-w-[500px] mb-8`}
                             alt={cover.alt || ""}
                         />
                     )}

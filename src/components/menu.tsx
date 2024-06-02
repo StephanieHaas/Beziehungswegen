@@ -154,7 +154,7 @@ export const Menu: React.FC = () => {
                 <div className=" flex flex-wrap items-center justify-end mx-auto py-2">
                     <MenuToggler label="Menü" onClick={handleClick} open={open} ref={ref} />
                     <div className={`${open ? "" : "hidden"} w-full md:block md:w-auto`}>
-                        <ul className="flex flex-col font-medium md:p-0 mt-4 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+                        <ul className="flex flex-col font-medium md:p-0 mt-4 md:text-xs lg:text-base md:space-x-4 lg:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
                             {menuItems.map((item) => {
                                 if (item.items) {
                                     return (

@@ -30,7 +30,7 @@
 
     h1 {
         @apply font-autography;
-        @apply text-5xl;
+        @apply text-6xl;
         @apply sm:text-7xl;
         @apply lg:text-8xl;
         @apply text-primary-700;
@@ -39,7 +39,7 @@
     }
     h2 {
         @apply font-autography;
-        @apply text-3xl;
+        @apply text-4xl;
         @apply sm:text-6xl;
         @apply lg:text-6xl;
         @apply pb-4;
