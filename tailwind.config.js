@@ -27,6 +27,7 @@ module.exports = {
         },
         extend: {
             fontFamily: {
+                montserrat: ['"Montserrat"', ...defaultTheme.fontFamily.sans],
                 autography: ['"Autography"', ...defaultTheme.fontFamily.sans],
             },
             keyframes: {

@@ -16,6 +16,10 @@
 }
 
 @layer base {
+    body {
+        @apply font-montserrat;
+    }
+
     a {
         @apply text-primary-700;
     }
