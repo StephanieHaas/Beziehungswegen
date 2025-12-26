@@ -23,7 +23,7 @@ const menuItems = [
     },
     { href: "/kurse/kurse", label: "Kurse" },
     { href: "/preise", label: "Preise" },
-    { href: "/themen-und-gedanken", label: "Themen und Gedanken" },
+    // { href: "/themen-und-gedanken", label: "Themen und Gedanken" },
     { href: "/kontakt", label: "Kontakt", highlight: true },
 ];
 
