@@ -26,11 +26,11 @@
         "gatsby-plugin-image": "^3.13.1",
         "gatsby-plugin-mdx": "^5.13.1",
         "gatsby-plugin-postcss": "^6.13.1",
-        "gatsby-plugin-sharp": "^5.13.1",
+        "gatsby-plugin-sharp": "^5.16.0",
         "gatsby-remark-gifs": "^1.2.0",
         "gatsby-remark-images": "^7.13.1",
         "gatsby-source-filesystem": "^5.13.1",
-        "gatsby-source-google-docs": "^2.4.3",
+        "gatsby-source-google-docs": "^2.4.8",
         "gatsby-transformer-remark": "^6.13.1",
         "gatsby-transformer-sharp": "^5.13.1",
         "postcss": "^8.4.35",
@@ -66,5 +66,21 @@
         "postcss-reporter": "^7.1.0",
         "ssh2-sftp-client": "^10.0.3",
         "typescript": "^5.3.3"
+    },
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "@parcel/watcher",
+            "core-js",
+            "core-js-pure",
+            "cpu-features",
+            "es5-ext",
+            "gatsby",
+            "gatsby-cli",
+            "lmdb",
+            "msgpackr-extract",
+            "sharp",
+            "ssh2",
+            "unrs-resolver"
+        ]
     }
 }
