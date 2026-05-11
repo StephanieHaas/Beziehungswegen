@@ -69,6 +69,7 @@ const config: GatsbyConfig = {
                             maxWidth: 590,
                             quality: 70,
                             linkImagesToOriginal: false,
+                            wrapperStyle: `margin-left: 0; margin-right: 0;`,
                         },
                     },
                     "gatsby-remark-gifs",
